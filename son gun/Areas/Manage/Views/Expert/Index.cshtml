@@ -1,0 +1,43 @@
+﻿@model List<Expert>
+@{
+    int count = 0;
+}
+
+
+<div class="container">
+    <h1><a class="btn btn-primary" asp-action="Create">Create</a></h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">FullName</th>
+                <th scope="col">Position</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@item.FullName</td>
+                    <td>@item.Position</td>
+                    <td>
+                        <div style="width:100px">
+                            <img width="100%" src="/Upload/@item.ImgUrl" />
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                        <a class="btn btn-danger" asp-action="Remove" asp-route-id="@item.Id">Remove</a>
+                    </td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
